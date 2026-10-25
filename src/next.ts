@@ -13,17 +13,25 @@ export function withSiteFoundation<T extends NextConfigLike>(config: T, options:
     async headers() {
       const existing = existingHeaders ? await existingHeaders() : [];
       const common = securityHeaders({ contentSecurityPolicy: options.contentSecurityPolicy });
-      return [
-        ...existing,
-        {
-          source: "/:path*",
-          headers: [
-            ...Object.entries(common).map(([key, value]) => ({ key, value })),
-            { key: "X-Site-Service", value: options.service },
-            { key: "X-Site-Foundation", value: options.version ?? "0.1.1" },
-          ],
-        },
+      const shared: Header[] = [
+        ...Object.entries(common).map(([key, value]) => ({ key, value })),
+        { key: "X-Site-Service", value: options.service },
+        { key: "X-Site-Foundation", value: options.version ?? "0.1.2" },
       ];
+      const universalIndex = existing.findIndex((rule) => rule.source === "/:path*");
+      if (universalIndex < 0) return [...existing, { source: "/:path*", headers: shared }];
+      return existing.map((rule, index) => {
+        if (index !== universalIndex) return rule;
+        const owned = new Set(rule.headers.map((header) => header.key.toLowerCase()));
+        return { ...rule, headers: [...rule.headers, ...shared.filter((header) => !owned.has(header.key.toLowerCase()))] };
+      });
     },
   } as T;
+}
+
+type ConfigFactory = (...args: never[]) => NextConfigLike | Promise<NextConfigLike>;
+
+export function withSiteFoundationExport<T extends NextConfigLike | ConfigFactory>(source: T, options: SiteFoundationOptions): T {
+  if (typeof source !== "function") return withSiteFoundation(source, options) as T;
+  return (async (...args: never[]) => withSiteFoundation(await source(...args), options)) as T;
 }
