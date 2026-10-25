@@ -8,4 +8,6 @@ Version 0.2 adds an accessible carousel controller, an honest contact-handoff ch
 
 Version 0.3 adds config-only website contracts, eight header variants, public blog helpers, the Salogent script widget adapter, and the GenXForm published-form adapter. Public clients require HTTPS and reject admin/dashboard URLs; admin applications remain separate.
 
+Version 0.4 starts removing copied kit code from websites. The shared Cloudflare site configuration contract is exported from `@appneural/site-foundation/kit`; website repositories keep their content and theme values, not a private copy of that contract.
+
 Next.js sites wrap their existing config with `withSiteFoundation` from `@appneural/site-foundation/next`. Vite sites generate their Cloudflare `_headers` content with `siteFoundationHeaders` from `@appneural/site-foundation/vite`. Existing site routes, branding and provider configuration remain site-owned.
