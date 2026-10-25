@@ -1,4 +1,4 @@
-import { securityHeaders } from "@appneural/site-security";
+import { securityHeaders } from "./modules/security.js";
 import type { SiteFoundationOptions } from "./index.js";
 
 export function siteFoundationHeaders(options: SiteFoundationOptions): string {
@@ -7,7 +7,7 @@ export function siteFoundationHeaders(options: SiteFoundationOptions): string {
     "/*",
     ...Object.entries(headers).map(([key, value]) => `  ${key}: ${value}`),
     `  X-Site-Service: ${options.service}`,
-    `  X-Site-Foundation: ${options.version ?? "0.1.2"}`,
+    `  X-Site-Foundation: ${options.version ?? "0.1.3"}`,
     "",
   ].join("\n");
 }

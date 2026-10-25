@@ -1,11 +1,11 @@
-import { securityHeaders } from "@appneural/site-security";
+import { securityHeaders } from "./modules/security.js";
 export function siteFoundationHeaders(options) {
     const headers = securityHeaders({ contentSecurityPolicy: options.contentSecurityPolicy });
     return [
         "/*",
         ...Object.entries(headers).map(([key, value]) => `  ${key}: ${value}`),
         `  X-Site-Service: ${options.service}`,
-        `  X-Site-Foundation: ${options.version ?? "0.1.2"}`,
+        `  X-Site-Foundation: ${options.version ?? "0.1.3"}`,
         "",
     ].join("\n");
 }

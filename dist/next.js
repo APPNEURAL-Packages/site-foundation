@@ -1,4 +1,4 @@
-import { securityHeaders } from "@appneural/site-security";
+import { securityHeaders } from "./modules/security.js";
 export function withSiteFoundation(config, options) {
     const existingHeaders = config.headers;
     return {
@@ -10,7 +10,7 @@ export function withSiteFoundation(config, options) {
             const shared = [
                 ...Object.entries(common).map(([key, value]) => ({ key, value })),
                 { key: "X-Site-Service", value: options.service },
-                { key: "X-Site-Foundation", value: options.version ?? "0.1.2" },
+                { key: "X-Site-Foundation", value: options.version ?? "0.1.3" },
             ];
             const universalIndex = existing.findIndex((rule) => rule.source === "/:path*");
             if (universalIndex < 0)

@@ -1,14 +1,14 @@
-export { createPageMetadata, websiteJsonLd, organizationJsonLd, breadcrumbJsonLd } from "@appneural/site-essentials";
-export { securityHeaders, DEFAULT_CSP } from "@appneural/site-security";
-export { DEFAULT_PERFORMANCE_BUDGET, performanceSnapshot, prefersReducedData } from "@appneural/site-performance";
-export { consentDefaults, canUse, readConsent, writeConsent } from "@appneural/site-consent";
-export { normalizePlainText, isEmail, validateContact } from "@appneural/site-forms";
-export { safePath, createSiteEvent, dispatchSiteEvent } from "@appneural/site-analytics";
-export { healthPayload, redactError } from "@appneural/site-observability";
-export { requiredPolicies, missingPolicies } from "@appneural/site-compliance";
-export { validateBrandDNA, toSiteIdentity, toCssCustomProperties } from "@appneurox/brand-dna";
-export type { SiteIdentity, PageMetadataInput } from "@appneural/site-essentials";
-export type { BrandDNA } from "@appneurox/brand-dna";
+export { createPageMetadata, websiteJsonLd, organizationJsonLd, breadcrumbJsonLd } from "./modules/essentials.js";
+export { securityHeaders, DEFAULT_CSP } from "./modules/security.js";
+export { DEFAULT_PERFORMANCE_BUDGET, performanceSnapshot, prefersReducedData } from "./modules/performance.js";
+export { consentDefaults, canUse, readConsent, writeConsent } from "./modules/consent.js";
+export { normalizePlainText, isEmail, validateContact } from "./modules/forms.js";
+export { safePath, createSiteEvent, dispatchSiteEvent } from "./modules/analytics.js";
+export { healthPayload, redactError } from "./modules/observability.js";
+export { requiredPolicies, missingPolicies } from "./modules/compliance.js";
+export { validateBrandDNA, toSiteIdentity, toCssCustomProperties } from "./modules/brand.js";
+export type { SiteIdentity, PageMetadataInput } from "./modules/essentials.js";
+export type { BrandDNA } from "./modules/brand.js";
 export type SiteFoundationOptions = {
     service: string;
     version?: string;
