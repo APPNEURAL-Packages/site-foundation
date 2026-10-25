@@ -6,6 +6,6 @@ The package contains a reviewed snapshot of the separately maintained concern pa
 
 Version 0.2 adds an accessible carousel controller, an honest contact-handoff chat widget, endpoint-configured form behavior, and common About, Contact, Privacy, Terms, Accessibility and 404 page descriptors. UI mounting remains opt-in so existing site-specific widgets and routes are not duplicated.
 
-Version 0.3 adds config-only website contracts, eight header variants, public blog helpers, Salogent chat and GenXForm client adapters. Public clients reject admin/dashboard URLs; admin applications remain separate.
+Version 0.3 adds config-only website contracts, eight header variants, public blog helpers, the Salogent script widget adapter, and the GenXForm published-form adapter. Public clients require HTTPS and reject admin/dashboard URLs; admin applications remain separate.
 
 Next.js sites wrap their existing config with `withSiteFoundation` from `@appneural/site-foundation/next`. Vite sites generate their Cloudflare `_headers` content with `siteFoundationHeaders` from `@appneural/site-foundation/vite`. Existing site routes, branding and provider configuration remain site-owned.

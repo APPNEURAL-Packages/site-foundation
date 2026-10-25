@@ -1,8 +1,11 @@
-function publicUrl(config, params) { const url = new URL(config.url); if (url.protocol !== "https:")
-    throw new Error("Public clients require HTTPS."); if (/\/(admin|dashboard)(?:\/|$)/u.test(url.pathname))
-    throw new Error("Admin routes cannot be embedded as public clients."); for (const [key, value] of Object.entries(params))
-    if (value)
-        url.searchParams.set(key, value); return url.toString(); }
-function mountClient(target, config, src) { const frame = document.createElement("iframe"); frame.src = src; frame.title = config.title; frame.loading = "lazy"; frame.referrerPolicy = "strict-origin-when-cross-origin"; frame.setAttribute("sandbox", "allow-forms allow-scripts allow-same-origin allow-popups"); frame.setAttribute("data-site-public-client", "true"); target.replaceChildren(frame); return frame; }
-export const mountSalogentClient = (target, config) => mountClient(target, config, publicUrl(config, { agent: config.agentId }));
-export const mountGenXFormClient = (target, config) => mountClient(target, config, publicUrl(config, { form: config.formId }));
+function requirePublicHttps(value, label) { const url = new URL(value); if (url.protocol !== "https:")
+    throw new Error(`${label} requires HTTPS.`); if (/\/(admin|dashboard)(?:\/|$)/u.test(url.pathname))
+    throw new Error(`${label} cannot use an admin route.`); return url; }
+export function mountSalogentClient(config) { requirePublicHttps(config.scriptUrl, "Salogent script"); requirePublicHttps(config.apiUrl, "Salogent API"); if (!config.websiteId.trim())
+    throw new Error("Salogent websiteId is required."); const existing = document.querySelector(`script[data-salogent-website-id="${CSS.escape(config.websiteId)}"]`); if (existing)
+    return existing; const script = document.createElement("script"); script.src = config.scriptUrl; script.async = true; script.dataset.salogentWebsiteId = config.websiteId; script.dataset.websiteId = config.websiteId; script.dataset.apiUrl = config.apiUrl; if (config.color)
+    script.dataset.color = config.color; if (config.welcome)
+    script.dataset.welcome = config.welcome; document.body.append(script); return script; }
+export function genXFormPublicUrl(config) { const url = requirePublicHttps(config.baseUrl, "GenXForm public client"); if (!config.publicRef.trim() || config.publicRef.includes("/"))
+    throw new Error("GenXForm publicRef must be a published form reference."); url.pathname = `${url.pathname.replace(/\/$/u, "")}/f/${encodeURIComponent(config.publicRef)}`; return url.toString(); }
+export function mountGenXFormClient(target, config) { const frame = document.createElement("iframe"); frame.src = genXFormPublicUrl(config); frame.title = config.title; frame.loading = "lazy"; frame.referrerPolicy = "strict-origin-when-cross-origin"; frame.setAttribute("sandbox", "allow-forms allow-scripts allow-same-origin allow-popups"); frame.setAttribute("data-site-public-client", "genxform"); target.replaceChildren(frame); return frame; }

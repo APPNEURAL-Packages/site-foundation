@@ -1,6 +1,6 @@
 {
   "name": "@appneural/site-foundation",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "One integration surface for the common APPNEURAL website packages.",
   "license": "MIT",
   "type": "module",

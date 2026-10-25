@@ -13,7 +13,7 @@ export { mountChatHandoff, chatHandoffStyles } from "./modules/chat.js";
 export { commonPages, commonFooterLinks } from "./modules/pages.js";
 export { defineHeader, validateHeader } from "./modules/headers.js";
 export { publicPosts, blogPath, blogTags } from "./modules/blog.js";
-export { mountSalogentClient, mountGenXFormClient } from "./modules/clients.js";
+export { mountSalogentClient, mountGenXFormClient, genXFormPublicUrl } from "./modules/clients.js";
 export { defineWebsiteConfig } from "./config.js";
 export type { SiteIdentity, PageMetadataInput } from "./modules/essentials.js";
 export type { BrandDNA } from "./modules/brand.js";
