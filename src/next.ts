@@ -20,7 +20,7 @@ export function withSiteFoundation<T extends NextConfigLike>(config: T, options:
           headers: [
             ...Object.entries(common).map(([key, value]) => ({ key, value })),
             { key: "X-Site-Service", value: options.service },
-            { key: "X-Site-Foundation", value: options.version ?? "0.1.0" },
+            { key: "X-Site-Foundation", value: options.version ?? "0.1.1" },
           ],
         },
       ];

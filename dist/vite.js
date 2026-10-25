@@ -5,7 +5,16 @@ export function siteFoundationHeaders(options) {
         "/*",
         ...Object.entries(headers).map(([key, value]) => `  ${key}: ${value}`),
         `  X-Site-Service: ${options.service}`,
-        `  X-Site-Foundation: ${options.version ?? "0.1.0"}`,
+        `  X-Site-Foundation: ${options.version ?? "0.1.1"}`,
         "",
     ].join("\n");
+}
+export function siteFoundationPlugin(options) {
+    return {
+        name: "appneural-site-foundation",
+        apply: "build",
+        generateBundle() {
+            this.emitFile({ type: "asset", fileName: "_headers", source: siteFoundationHeaders(options) });
+        },
+    };
 }

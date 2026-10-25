@@ -1,6 +1,6 @@
 {
   "name": "@appneural/site-foundation",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "One integration surface for the common APPNEURAL website packages.",
   "license": "MIT",
   "type": "module",
@@ -26,7 +26,7 @@
     "@appneural/site-forms": "github:APPNEURAL-Packages/site-forms#v0.1.0",
     "@appneural/site-observability": "github:APPNEURAL-Packages/site-observability#v0.1.0",
     "@appneural/site-performance": "github:APPNEURAL-Packages/site-performance#v0.1.0",
-    "@appneural/site-security": "github:APPNEURAL-Packages/site-security#v0.1.0",
+    "@appneural/site-security": "github:APPNEURAL-Packages/site-security#v0.1.1",
     "@appneurox/brand-dna": "github:APPNEURAL-Packages/brand-dna#v0.1.0"
   },
   "devDependencies": { "typescript": "^5.8.0" }

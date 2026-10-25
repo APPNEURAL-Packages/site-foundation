@@ -7,7 +7,19 @@ export function siteFoundationHeaders(options: SiteFoundationOptions): string {
     "/*",
     ...Object.entries(headers).map(([key, value]) => `  ${key}: ${value}`),
     `  X-Site-Service: ${options.service}`,
-    `  X-Site-Foundation: ${options.version ?? "0.1.0"}`,
+    `  X-Site-Foundation: ${options.version ?? "0.1.1"}`,
     "",
   ].join("\n");
+}
+
+type EmitAsset = (asset: { type: "asset"; fileName: string; source: string }) => void;
+
+export function siteFoundationPlugin(options: SiteFoundationOptions) {
+  return {
+    name: "appneural-site-foundation",
+    apply: "build" as const,
+    generateBundle(this: { emitFile: EmitAsset }) {
+      this.emitFile({ type: "asset", fileName: "_headers", source: siteFoundationHeaders(options) });
+    },
+  };
 }
