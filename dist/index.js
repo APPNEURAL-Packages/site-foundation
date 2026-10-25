@@ -10,3 +10,7 @@ export { validateBrandDNA, toSiteIdentity, toCssCustomProperties } from "./modul
 export { mountCarousel } from "./modules/carousel.js";
 export { mountChatHandoff, chatHandoffStyles } from "./modules/chat.js";
 export { commonPages, commonFooterLinks } from "./modules/pages.js";
+export { defineHeader, validateHeader } from "./modules/headers.js";
+export { publicPosts, blogPath, blogTags } from "./modules/blog.js";
+export { mountSalogentClient, mountGenXFormClient } from "./modules/clients.js";
+export { defineWebsiteConfig } from "./config.js";

@@ -37,7 +37,7 @@ export declare function createPageMetadata(site: SiteIdentity, page: PageMetadat
     };
     twitter: {
         images?: string[] | undefined;
-        card: "summary_large_image" | "summary";
+        card: "summary" | "summary_large_image";
         title: string;
         description: string;
     };

@@ -10,7 +10,7 @@ export function withSiteFoundation(config, options) {
             const shared = [
                 ...Object.entries(common).map(([key, value]) => ({ key, value })),
                 { key: "X-Site-Service", value: options.service },
-                { key: "X-Site-Foundation", value: options.version ?? "0.2.0" },
+                { key: "X-Site-Foundation", value: options.version ?? "0.3.0" },
             ];
             const universalIndex = existing.findIndex((rule) => rule.source === "/:path*");
             if (universalIndex < 0)

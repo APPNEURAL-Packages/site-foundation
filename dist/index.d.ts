@@ -11,11 +11,19 @@ export { validateBrandDNA, toSiteIdentity, toCssCustomProperties } from "./modul
 export { mountCarousel } from "./modules/carousel.js";
 export { mountChatHandoff, chatHandoffStyles } from "./modules/chat.js";
 export { commonPages, commonFooterLinks } from "./modules/pages.js";
+export { defineHeader, validateHeader } from "./modules/headers.js";
+export { publicPosts, blogPath, blogTags } from "./modules/blog.js";
+export { mountSalogentClient, mountGenXFormClient } from "./modules/clients.js";
+export { defineWebsiteConfig } from "./config.js";
 export type { SiteIdentity, PageMetadataInput } from "./modules/essentials.js";
 export type { BrandDNA } from "./modules/brand.js";
 export type { CarouselOptions } from "./modules/carousel.js";
 export type { ChatHandoffOptions } from "./modules/chat.js";
 export type { CommonPageId, CommonPageDescriptor } from "./modules/pages.js";
+export type { HeaderVariant, HeaderLink, HeaderAction, HeaderConfig } from "./modules/headers.js";
+export type { BlogAuthor, BlogPost, BlogConfig } from "./modules/blog.js";
+export type { SalogentClientConfig, GenXFormClientConfig } from "./modules/clients.js";
+export type { WebsiteFoundationConfig } from "./config.js";
 export type SiteFoundationOptions = {
     service: string;
     version?: string;

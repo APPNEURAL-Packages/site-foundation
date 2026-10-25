@@ -7,7 +7,7 @@ export function siteFoundationHeaders(options: SiteFoundationOptions): string {
     "/*",
     ...Object.entries(headers).map(([key, value]) => `  ${key}: ${value}`),
     `  X-Site-Service: ${options.service}`,
-    `  X-Site-Foundation: ${options.version ?? "0.2.0"}`,
+    `  X-Site-Foundation: ${options.version ?? "0.3.0"}`,
     "",
   ].join("\n");
 }
