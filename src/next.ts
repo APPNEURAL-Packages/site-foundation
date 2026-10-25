@@ -16,7 +16,7 @@ export function withSiteFoundation<T extends NextConfigLike>(config: T, options:
       const shared: Header[] = [
         ...Object.entries(common).map(([key, value]) => ({ key, value })),
         { key: "X-Site-Service", value: options.service },
-            { key: "X-Site-Foundation", value: options.version ?? "0.1.3" },
+        { key: "X-Site-Foundation", value: options.version ?? "0.2.0" },
       ];
       const universalIndex = existing.findIndex((rule) => rule.source === "/:path*");
       if (universalIndex < 0) return [...existing, { source: "/:path*", headers: shared }];

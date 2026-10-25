@@ -3,7 +3,7 @@ import { performanceSnapshot, prefersReducedData } from "./modules/performance.j
 export function initializeSiteFoundation() {
     if (typeof window === "undefined" || typeof document === "undefined")
         return;
-    document.documentElement.dataset.siteFoundation = "0.1.3";
+    document.documentElement.dataset.siteFoundation = "0.2.0";
     if (prefersReducedData())
         document.documentElement.dataset.reducedData = "true";
     dispatchSiteEvent(createSiteEvent("page_view", window.location.pathname));

@@ -10,3 +10,8 @@ export declare function validateContact(input: {
     message?: unknown;
     website?: unknown;
 }): FormIssue[];
+export type ContactFormOptions = {
+    endpoint: string;
+    successMessage?: string;
+};
+export declare function mountContactForm(form: HTMLFormElement, options: ContactFormOptions): () => void;
