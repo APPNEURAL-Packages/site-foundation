@@ -3,7 +3,7 @@ import type { SiteFoundationOptions } from "./index.js";
 
 type Header = { key: string; value: string };
 type HeaderRule = { source: string; headers: Header[] };
-type NextConfigLike = { headers?: () => Promise<HeaderRule[]> | HeaderRule[]; [key: string]: unknown };
+type NextConfigLike = { headers?: () => Promise<HeaderRule[]> | HeaderRule[] };
 
 export function withSiteFoundation<T extends NextConfigLike>(config: T, options: SiteFoundationOptions): T {
   const existingHeaders = config.headers;

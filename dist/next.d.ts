@@ -9,7 +9,6 @@ type HeaderRule = {
 };
 type NextConfigLike = {
     headers?: () => Promise<HeaderRule[]> | HeaderRule[];
-    [key: string]: unknown;
 };
 export declare function withSiteFoundation<T extends NextConfigLike>(config: T, options: SiteFoundationOptions): T;
 type ConfigFactory = (...args: never[]) => NextConfigLike | Promise<NextConfigLike>;
