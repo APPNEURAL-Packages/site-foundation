@@ -1,0 +1,33 @@
+{
+  "name": "@appneural/site-foundation",
+  "version": "0.1.0",
+  "description": "One integration surface for the common APPNEURAL website packages.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" },
+    "./accessibility": { "types": "./dist/accessibility.d.ts", "import": "./dist/accessibility.js" },
+    "./next": { "types": "./dist/next.d.ts", "import": "./dist/next.js" },
+    "./vite": { "types": "./dist/vite.d.ts", "import": "./dist/vite.js" },
+    "./browser": { "types": "./dist/browser.d.ts", "import": "./dist/browser.js" }
+  },
+  "files": ["dist", "README.md"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@appneural/accessibility": "github:APPNEURAL-Packages/accessibility#v0.2.1",
+    "@appneural/site-analytics": "github:APPNEURAL-Packages/site-analytics#v0.1.0",
+    "@appneural/site-compliance": "github:APPNEURAL-Packages/site-compliance#v0.1.0",
+    "@appneural/site-consent": "github:APPNEURAL-Packages/site-consent#v0.1.0",
+    "@appneural/site-essentials": "github:APPNEURAL-Packages/site-essentials#v0.1.0",
+    "@appneural/site-forms": "github:APPNEURAL-Packages/site-forms#v0.1.0",
+    "@appneural/site-observability": "github:APPNEURAL-Packages/site-observability#v0.1.0",
+    "@appneural/site-performance": "github:APPNEURAL-Packages/site-performance#v0.1.0",
+    "@appneural/site-security": "github:APPNEURAL-Packages/site-security#v0.1.0",
+    "@appneurox/brand-dna": "github:APPNEURAL-Packages/brand-dna#v0.1.0"
+  },
+  "devDependencies": { "typescript": "^5.8.0" }
+}
