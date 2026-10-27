@@ -1,4 +1,4 @@
-import { securityHeaders } from "./modules/security.js";
+import { siteResponseHeaders } from "./modules/security.js";
 import type { SiteFoundationOptions } from "./index.js";
 
 type Header = { key: string; value: string };
@@ -12,19 +12,11 @@ export function withSiteFoundation<T extends NextConfigLike>(config: T, options:
     poweredByHeader: false,
     async headers() {
       const existing = existingHeaders ? await existingHeaders() : [];
-      const common = securityHeaders({ contentSecurityPolicy: options.contentSecurityPolicy });
-      const shared: Header[] = [
-        ...Object.entries(common).map(([key, value]) => ({ key, value })),
-        { key: "X-Site-Service", value: options.service },
-        { key: "X-Site-Foundation", value: options.version ?? "0.3.0" },
-      ];
-      const universalIndex = existing.findIndex((rule) => rule.source === "/:path*");
-      if (universalIndex < 0) return [...existing, { source: "/:path*", headers: shared }];
-      return existing.map((rule, index) => {
-        if (index !== universalIndex) return rule;
-        const owned = new Set(rule.headers.map((header) => header.key.toLowerCase()));
-        return { ...rule, headers: [...rule.headers, ...shared.filter((header) => !owned.has(header.key.toLowerCase()))] };
-      });
+      const shared: Header[] = Object.entries(siteResponseHeaders(options)).map(([key, value]) => ({ key, value }));
+      // vinext's matcher does not match the root path with "/:path*"; "/(.*)" covers
+      // it in both vinext and Next.js. Listed first, so a site's own rules for the
+      // same header keys still win: both frameworks keep the last matching value.
+      return [{ source: "/(.*)", headers: shared }, ...existing];
     },
   } as T;
 }

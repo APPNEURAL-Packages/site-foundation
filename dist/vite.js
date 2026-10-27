@@ -1,13 +1,6 @@
-import { securityHeaders } from "./modules/security.js";
+import { siteResponseHeaders } from "./modules/security.js";
 export function siteFoundationHeaders(options) {
-    const headers = securityHeaders({ contentSecurityPolicy: options.contentSecurityPolicy });
-    return [
-        "/*",
-        ...Object.entries(headers).map(([key, value]) => `  ${key}: ${value}`),
-        `  X-Site-Service: ${options.service}`,
-        `  X-Site-Foundation: ${options.version ?? "0.3.0"}`,
-        "",
-    ].join("\n");
+    return ["/*", ...Object.entries(siteResponseHeaders(options)).map(([key, value]) => `  ${key}: ${value}`), ""].join("\n");
 }
 export function siteFoundationPlugin(options) {
     return {

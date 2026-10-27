@@ -1,5 +1,5 @@
 export { createPageMetadata, websiteJsonLd, organizationJsonLd, breadcrumbJsonLd } from "./modules/essentials.js";
-export { securityHeaders, DEFAULT_CSP } from "./modules/security.js";
+export { securityHeaders, DEFAULT_CSP, siteResponseHeaders, FOUNDATION_VERSION } from "./modules/security.js";
 export { DEFAULT_PERFORMANCE_BUDGET, performanceSnapshot, prefersReducedData } from "./modules/performance.js";
 export { consentDefaults, canUse, readConsent, writeConsent } from "./modules/consent.js";
 export { normalizePlainText, isEmail, validateContact, mountContactForm } from "./modules/forms.js";

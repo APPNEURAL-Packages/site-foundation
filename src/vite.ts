@@ -1,15 +1,8 @@
-import { securityHeaders } from "./modules/security.js";
+import { siteResponseHeaders } from "./modules/security.js";
 import type { SiteFoundationOptions } from "./index.js";
 
 export function siteFoundationHeaders(options: SiteFoundationOptions): string {
-  const headers = securityHeaders({ contentSecurityPolicy: options.contentSecurityPolicy });
-  return [
-    "/*",
-    ...Object.entries(headers).map(([key, value]) => `  ${key}: ${value}`),
-    `  X-Site-Service: ${options.service}`,
-    `  X-Site-Foundation: ${options.version ?? "0.3.0"}`,
-    "",
-  ].join("\n");
+  return ["/*", ...Object.entries(siteResponseHeaders(options)).map(([key, value]) => `  ${key}: ${value}`), ""].join("\n");
 }
 
 type EmitAsset = (asset: { type: "asset"; fileName: string; source: string }) => void;

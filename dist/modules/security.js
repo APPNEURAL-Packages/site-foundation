@@ -23,3 +23,13 @@ export function securityHeaders(options = {}) {
     }
     return headers;
 }
+/** Keep in step with package.json so X-Site-Foundation reports the installed release. */
+export const FOUNDATION_VERSION = "0.4.3";
+/** The security headers plus the X-Site-Service and X-Site-Foundation markers every site sends. */
+export function siteResponseHeaders(options) {
+    return {
+        ...securityHeaders({ contentSecurityPolicy: options.contentSecurityPolicy }),
+        "X-Site-Service": options.service,
+        "X-Site-Foundation": options.version ?? FOUNDATION_VERSION,
+    };
+}
